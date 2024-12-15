@@ -1,6 +1,36 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
+.dark {
+  --primary-color: #8A9A9E;
+  --body-background-color: #1E1E1E;
+  --page-header-bg-color: #2C3A3D;
+  --page-header-text-color: #E0E0E0;
+  --header-text-color: #B0C1D4;
+  --home-border-color: #444;
+  --table-background-color: #1E1E1E;
+  --table-border-color: #555;
+  --table-color: #CCCCCC;
+  --table-content-color: #999;  
+  --table-selected-color: #333; 
+}
+
+.light {
+  --primary-color: #606c71;
+  --body-background-color: #f5f5f5;
+  --page-header-bg-color: darkslategray;
+  --page-header-text-color: whitesmoke;
+  --header-text-color: #303A50;
+  --home-border-color: #ccc;
+  --table-background-color: white;
+  --table-border-color: rgba(0, 0, 0, 0.175);
+  --table-color: #333;
+  --table-content-color: #777;
+  --table-selected-color: #e8e8e8;
+}
+
 body {
-    color: #606c71;
+    color: var(--primary-color);
+    background-color: var(--body-background-color);
     font-size:1em;
     line-height:1.5em;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -12,20 +42,38 @@ body {
 }
 
 .masthead, #masthead, .help-page-header, h1{
-	background-color: darkslategray;
-	color: whitesmoke;
+	background-color: var(--page-header-bg-color);
+	color: var(--page-header-text-color);
 	display: block;
 	font-size: 2em;
 	font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
-	 line-height: 2em;
-	 margin: 1em 0em;
-	 padding: 1em 0em;
-	 text-align: center;
-	 width: 100%;
+  line-height: 2em;
+  margin: 1em 0em;
+  padding: 1em 0em;
+  text-align: center;
+  width: 100%;
 }
 
 .home-container {
-	border-left-color: #ccc; border-left-style: solid; border-left-width: 1px; border-right-color: #ccc; border-right-style: solid; border-right-width: 1px; border-bottom-color: #ccc; border-bottom-width: 1px; border-bottom-style: solid; border-top-color: #ccc; border-top-style: solid; border-top-width: 1px; font-family: 'Trebuchet MS', 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-bottom: 18px; margin-top: 18px; padding-bottom: 16px; padding-left: 0; padding-right: 0; width: 100%;
+	border-left-color: var(--home-border-color); 
+  border-left-style: solid; 
+  border-left-width: 1px; 
+  border-right-color: var(--home-border-color); 
+  border-right-style: solid; 
+  border-right-width: 1px; 
+  border-bottom-color: var(--home-border-color); ; 
+  border-bottom-width: 1px; 
+  border-bottom-style: solid; 
+  border-top-color: var(--home-border-color); ;
+  border-top-style: solid; 
+  border-top-width: 1px; 
+  font-family: 'Trebuchet MS', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+  margin-bottom: 18px; 
+  margin-top: 18px; 
+  padding-bottom: 16px; 
+  padding-left: 0; 
+  padding-right: 0; 
+  width: 100%;
 }
 
 .page-header {
@@ -53,19 +101,19 @@ body {
 
 h2 {
   margin: 2em 0em;
-  color: #303A50;
+  color: var(--header-text-color);
   font-size: 2em;
 }
 
 h3 {
   margin: 1.62em 0em;
-  color: #303A50;
+  color: var(--header-text-color);
   font-size: 1.62em;
 }
 
 h4 {
   margin: 1.5em 0em;
-  color: #303A50;
+  color: var(--header-text-color);
   font-size: 1em;
 }
 
@@ -106,23 +154,22 @@ code {
 }
 
 .main-content table {
-    color: #333;
-    background: white;
-    border: 1px solid grey;
+    color: var(--table-color);
+    background: var(--table-background-color);
+    border: 1px solid var(--table-border-color);
     font-size: 12pt;
     border-collapse: collapse;
 }
 .main-content thead th,
 .main-content tfoot th {
-    color: #777;
+    color: var(--table-content-color);
     background: rgba(0,0,0,.1);
 }
 .main-content th,
 .main-content td {
     padding: .5em;
-    border: 1px solid lightgrey;
+    border: 1px solid var(--table-border-color);
 }
 a {
   text-decoration: none;
 }
-

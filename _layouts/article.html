@@ -8,7 +8,7 @@ layout: default
         {% assign previous = "" %}
         <div class="row-fluid">
             <div class="span12">
-                <ul class="pt-2 pb-2 breadcrumb clearfix text-bg-light">
+                <ul class="pt-2 pb-2 breadcrumb clearfix">
                     <nav aria-label="You are here:" role="navigation">
                         <ol class="breadcrumbs">
                         {% if num_parts == "-1" %}
@@ -38,3 +38,9 @@ layout: default
         </div>
     </div>
 </div>
+
+<style>
+    .span12 {
+        background-color: var(--table-selected-color);
+    }
+</style>

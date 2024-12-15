@@ -13,3 +13,28 @@
     </div>
   </div>
 </div>
+
+<style>
+  .accordion-header {
+    color: var(--primary-color);
+  }
+
+  .accordion-item {
+    color: var(--primary-color);
+  }
+
+  .accordion-button {
+    color: var(--primary-color);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .accordion-button.collapsed::after {
+      filter: invert(1);
+    }
+  }
+  
+  .accordion-button:not(.collapsed) {
+    background-color: var(--table-selected-color);
+    color: var(--primary-color);
+  }
+</style>

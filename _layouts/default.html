@@ -21,13 +21,72 @@
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/global.css">
   <script src="/assets/js/bootstrap.min.js"></script>
-  
 </head>
 <body>
+  <script>
+    loadTheme();
+
+    function loadTheme() {
+      const html = document.documentElement;
+
+      if (document.cookie.split('; ').find(row => row.startsWith('theme='))) {
+        const theme = getThemeCookie();
+        if (theme === 'dark') {
+          html.classList.add('dark');
+        } else {
+          html.classList.add('light');
+        }
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        html.classList.add('dark');
+      } else {
+        html.classList.add('light');
+      }
+    }
+
+    function getThemeCookie() {
+      return document.cookie.split('; ').find(row => row.startsWith('theme=')).split('=')[1];
+    }
+
+    function setThemeCookie(theme) {
+      document.cookie = `theme=${theme};path=/;`;
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        html.classList.add('light');
+        setThemeCookie('light');
+      } else {
+        html.classList.remove('light');
+        html.classList.add('dark');
+        setThemeCookie('dark');
+      }
+    }
+  </script>
+
   <div class="container">
       <div class="navbar navbar-expand-lg pt-md-5 pt-3">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">{{ site.title | default: site.github.repository_name }}</a>
+          <div class="name-container">
+            <a class="navbar-brand" href="/">{{ site.title | default: site.github.repository_name }}</a>
+            <a id="theme-toggle" onclick="toggleTheme()">
+              <svg width="17px" height="17px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dark-mode">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#000000"/>
+              </svg>
+              <svg width="17px" height="17px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="light-mode">
+                <g clip-path="url(#a)" fill="#000000">
+                  <path d="M12 0a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V1a1 1 0 0 1 1-1ZM4.929 3.515a1 1 0 0 0-1.414 1.414l2.828 2.828a1 1 0 0 0 1.414-1.414L4.93 3.515ZM1 11a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2H1ZM18 12a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1ZM17.657 16.243a1 1 0 0 0-1.414 1.414l2.828 2.828a1 1 0 1 0 1.414-1.414l-2.828-2.828ZM7.757 17.657a1 1 0 1 0-1.414-1.414L3.515 19.07a1 1 0 1 0 1.414 1.414l2.828-2.828ZM20.485 4.929a1 1 0 0 0-1.414-1.414l-2.828 2.828a1 1 0 1 0 1.414 1.414l2.828-2.828ZM13 19a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0v-4ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"/>
+                </g>
+                <defs>
+                  <clipPath id="a">
+                    <path fill="#ffffff" d="M0 0h24v24H0z"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+          </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -50,9 +109,9 @@
     </div>
       
     
-      <footer class="text-bg-light text-center mt-3">
-        <div class="container p-4">
-          <small>
+      <footer class="text-bg-light text-center mt-3 footer">
+        <div class="container p-4 footer-container">
+          <small class="footer-text">
             <div><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by the community.</div>
           <div>Need more help? <a href="https://discord.gg/58Sxm23">Click here</a> to ask our volunteers!</div></small>
           </div>
@@ -72,5 +131,61 @@
         </script>
         {% endif %}
       </body>
-      </html>
-      
+  <style>
+    .navbar-nav {
+      --bs-nav-link-color: var(--primary-color);
+    }
+
+    .navbar-brand {
+      --bs-navbar-brand-color: var(--primary-color);
+    }
+
+    .footer-text {
+      color: var(--primary-color);
+    }
+
+    a:hover {
+      color: var(--primary-color) !important;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    .footer {
+      background-color: var(--table-selected-color) !important;
+    }
+
+    .name-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .light .light-mode {
+      display: block;
+    }
+
+    .light .dark-mode {
+      display: none;
+    }
+
+    .dark .light-mode {
+      display: none;
+    }
+
+    .dark .dark-mode {
+      display: block;
+    }
+
+    path {
+      fill: var(--primary-color);
+    }
+
+    .navbar-toggler {
+      color: var(--primary-color);
+    }
+
+    .dark .navbar-toggler {
+      filter: invert(1);
+    }
+  </style>
+    </html>
+    
